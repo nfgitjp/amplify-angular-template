@@ -5,4 +5,67 @@
 
 .title {
     padding: 10px;
+    border-top: 5px solid gray;
+    border-left: 3px solid gray;
+    border-right: 3px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.content {
+    margin: 20px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.jc-space {
+    justify-content: space-between;
+}
+
+.col-gap-30 {
+    row-gap: 30px;
+}
+
+.col-gap-10 {
+    row-gap: 10px;
+}
+
+.calendar {
+    padding: 10px;
+    background-color: whitesmoke;
+    height: 70%;
+}
+
+.card-content {
+    margin: 30px 0px 30px;
+}
+
+.input-form {
+    padding: 10px;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+
+.row-gap-10 {
+    column-gap: 10px;
+}
+
+.jc-ai-center {
+    justify-content: center;
+    align-items: center;
 }

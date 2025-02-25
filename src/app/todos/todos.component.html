@@ -2,6 +2,58 @@
 <h1 class="title-bk">
   <div class="title">ToDoアプリ</div>
 </h1>
-<div>
-  <button mat-flat-button>Basic</button>
+<div class="content">
+  <div class="flex-row">
+    <div class="flex-2 calendar">
+      <full-calendar #calendar [options]="calendarOptions" [events]="events" dateClick="dateClick($event)" (click)="onClickEvent($event)">
+        <ng-template #eventContent let-arg>
+          <i>{{ arg.event.id }}, {{ arg.event.title }}</i>
+        </ng-template>
+      </full-calendar>
+    </div>
+    <div class="flex-1">
+      <form [formGroup]="form">
+        <mat-card class="input-form" appearance="outlined">
+          <mat-card-header class="flex-row jc-space">
+            <mat-card-title>ToDo編集・追加</mat-card-title>
+            <button mat-raised-button color="warn" [disabled]="eventId === ''" (click)="onClickDelete()">削除</button>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <div class="flex-column col-gap-30">
+              <div class="flex-column col-gap-10">
+                <div>タイトルを入力してください*</div>
+                <mat-form-field>
+                  <mat-label>タイトル</mat-label>
+                  <input type="text" matInput formControlName="title">
+                  <mat-error>必須入力です。</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="flex-column col-gap-10">
+                <div>日付を入力してください*</div>
+                <mat-form-field>
+                  <mat-label>日付</mat-label>
+                  <input matInput [matDatepicker]="date1" formControlName="date">
+                  <mat-datepicker-toggle matIconSuffix [for]="date1"></mat-datepicker-toggle>
+                  <mat-datepicker #date1></mat-datepicker>
+                  <mat-error>必須入力です。</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="flex-column col-gap-10">
+                <div>メモを入力してください</div>
+                <mat-form-field>
+                  <mat-label>メモ</mat-label>
+                  <textarea matInput formControlName="memo" rows="10" cols="25"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-footer class="card-footer flex-row jc-ai-center column-gap-10">
+            <button mat-raised-button color="primary" (click)="onClickAdd()" [disabled]="title.hasError('required') || date.hasError('required') || eventId !== ''">追加</button>
+            <button mat-raised-button color="primary" (click)="onClickChange()" [disabled]="title.hasError('required') || date.hasError('required') || eventId === ''">変更</button>
+            <button mat-raised-button color="warn" (click)="onClickReset()">取消</button>
+          </mat-card-footer>
+        </mat-card>
+      </form>
+    </div>
+  </div>
 </div>
